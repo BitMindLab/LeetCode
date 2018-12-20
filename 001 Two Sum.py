@@ -9,16 +9,12 @@ You may assume that each input would have exactly one solution.
 Input: numbers={2, 7, 11, 15}, target=9
 Output: index1=1, index2=2
 """
-__author__ = 'Danyang'
 
 
 class Solution:
     def twoSum_TLE(self, num, target):
         """
         built-in method .index
-        :param num: list
-        :param target: int
-        :return: tuple, (index1, index2)
         """
         nums = num
         for ind1, val in enumerate(nums):
@@ -37,10 +33,6 @@ class Solution:
     def twoSum(self, num, target):
         """
         Hash Map
-
-        :param num: list
-        :param target: int
-        :return: tuple, (index1, index2)
         """
         hash_map = {}
         for ind, val in enumerate(num):
@@ -54,4 +46,4 @@ class Solution:
 
 
 if __name__=="__main__":
-    print Solution().twoSum([3, 2, 4], 6)
+    print(Solution().twoSum([3, 2, 4], 6))

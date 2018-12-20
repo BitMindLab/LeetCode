@@ -37,3 +37,5 @@ class Solution:
             visited_last_index[ord(val)] = ind  # update last visited index
 
         return longest
+
+print(Solution().lengthOfLongestSubstring("abcabcbb"))

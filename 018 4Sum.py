@@ -80,16 +80,16 @@ class Solution:
             return []
         num.sort()
 
-        for p in xrange(length):
-            for q in xrange(p+1, length):
+        for p in range(length):
+            for q in range(p+1, length):
                 # record the pair sum
                 if num[p]+num[q] not in sum2index:
                     sum2index[num[p]+num[q]] = [(p, q)]
                 else:
                     sum2index[num[p]+num[q]].append((p, q))
 
-        for i in xrange(length):
-            for j in xrange(i+1, length-2):
+        for i in range(length):
+            for j in range(i+1, length-2):
                 sum_remain = target-num[i]-num[j]
                 if sum_remain in sum2index:
                     # construct the result
@@ -98,3 +98,5 @@ class Solution:
                             result_set.add(( num[i], num[j], num[pair[0]], num[pair[1]] ))
 
         return [list(i) for i in result_set]  # convert tuple to list
+
+print(Solution().fourSum([1, 0, -1, 0, -2, 2], 0))
