@@ -76,4 +76,5 @@ if __name__ == "__main__":
         l1s[i].next = l1s[i+1]
     for i in range(len(l2s)-1):
         l2s[i].next = l2s[i+1]
-    Solution().addTwoNumbers(l1s[0], l2s[0])
+    solution = Solution().addTwoNumbers(l1s[0], l2s[0])
+    print(solution)

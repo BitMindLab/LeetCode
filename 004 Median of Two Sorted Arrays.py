@@ -1,6 +1,6 @@
 """
-There are two sorted arrays A and B of size m and n respectively. Find the median of the two sorted arrays. The overall
-run time complexity should be O(log (m+n)).
+There are two sorted arrays A and B of size m and n respectively.
+Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).
 """
 
 
@@ -31,13 +31,6 @@ class Solution:
             return self.find_kth(A, B, (m+n)/2)
 
     def find_kth(self, A, B, k):
-        """
-
-        :param A:
-        :param B:
-        :param k: index starting from 0
-        :return:
-        """
         if not A:  return B[k]
         if not B:  return A[k]
         if k == 0: return min(A[0], B[0])
