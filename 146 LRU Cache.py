@@ -106,10 +106,10 @@ class LRUCache_TLE(object):
         :param value: int
         :return: value
         """
-        if key in self.dic:
+        if key in self.dic:  # 可以替换位置，或者删除，再添加
             self.q.remove(key)
             self.q.insert(0, key)
-        else:
+        else:               # 直接插入，并删除尾部
             if len(self.q)+1 <= self.capacity:
                 self.q.insert(0, key)
             else:
@@ -117,3 +117,19 @@ class LRUCache_TLE(object):
                 self.q.insert(0, key)
 
         self.dic[key] = value
+
+
+def test():
+    cache = LRUCache(2)
+    cache.set(1, 1)
+    cache.set(2, 2)
+    print(cache.get(1))
+    cache.set(3, 3)   # evicts key 2
+    print(cache.get(2))  #  returns -1 (not found)
+    cache.set(4, 4)  # evicts key 1
+    print(cache.get(1))  # returns -1 (not found)
+    print(cache.get(3))  # returns 3
+    print(cache.get(4))  # returns 4
+
+
+test()
