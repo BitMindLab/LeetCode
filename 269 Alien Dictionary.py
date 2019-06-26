@@ -1,5 +1,43 @@
+#!/usr/bin/python3
 """
-Premium Question
+There is a new alien language which uses the latin alphabet. However, the order
+among letters are unknown to you. You receive a list of non-empty words from the
+dictionary, where words are sorted lexicographically by the rules of this new
+language. Derive the order of letters in this language.
+
+Example 1:
+
+Input:
+[
+  "wrt",
+  "wrf",
+  "er",
+  "ett",
+  "rftt"
+]
+
+Output: "wertf"
+Example 2:
+
+Input:
+[
+  "z",
+  "x"
+]
+
+Output: "zx"
+Example 3:
+
+Input:
+[
+  "z",
+  "x",
+  "z"
+]
+
+Output: ""
+
+Explanation: The order is invalid, so return "".
 """
 from collections import defaultdict
 
@@ -25,11 +63,15 @@ class Solution(object):
 
     def construct_graph(self, words):
         V = defaultdict(list)
-        for i in xrange(len(words)-1):
+        # need to initialize, consider test case ["z", "z"]
+        for w in words:  # pitfall
+            for c in w:
+                V[c]
+        for i in xrange(len(words) - 1):  # compare word_i and word_{i+1}
             for j in xrange(min(len(words[i]), len(words[i+1]))):
                 if words[i][j] != words[i+1][j]:
                     V[words[i][j]].append(words[i+1][j])
-                    break  # need to break
+                    break  # need to break for lexical order
 
         return V
 
@@ -41,7 +83,7 @@ class Solution(object):
         :param visited: visited letters
         :param pathset: marked predecessor in the path
         :param ret: the path, ordered  topologically
-        :return: whether contains cycles 
+        :return: whether contains cycles
         """
         if v in pathset:
             return False
@@ -53,8 +95,8 @@ class Solution(object):
                     return False
 
         pathset.remove(v)
-        visited.add(v)
-        ret.append(v)
+        visited.add(v)  # add visited is in the end rather than at the begining
+        ret.append(v)  # append after lower values
         return True
 
     def construct_graph_tedious(self, words, up, down, ptr, V):
